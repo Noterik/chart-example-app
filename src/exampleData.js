@@ -64,7 +64,7 @@ export const lines = [
     min: 0,
     max: 20,
     color: "red",
-    pointRadius: 3,
+    pointRadius: 0,
   },
   {
     name: "WAVE2",
