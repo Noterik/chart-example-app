@@ -64,7 +64,7 @@ export const lines = [
     min: 0,
     max: 20,
     color: "red",
-    pointRadius: 0,
+    pointRadius: 4
   },
   {
     name: "WAVE2",
@@ -72,7 +72,6 @@ export const lines = [
     min: 0,
     max: 60,
     fill: "end",
-
     color: "purple",
   },
   {
@@ -82,7 +81,6 @@ export const lines = [
     max: 90,
     color: "blue",
     showLine: false,
-    pointRadius: 4,
   },
 ];
 

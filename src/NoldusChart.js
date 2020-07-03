@@ -1,6 +1,5 @@
-import React, { useMemo, useRef } from "react";
-import { DataViewerChart, themes } from "@insync-stageplayer/ui-components";
-import { ThemeProvider } from "styled-components";
+import React, { useMemo } from "react";
+import { DataViewerChart } from "@insync-stageplayer/ui-components";
 
 const NoldusChart = (props) => {
   const { time, visible, onDrag, onStopSelect } = props;
@@ -40,7 +39,6 @@ const NoldusChart = (props) => {
   }
 
   return (
-    <ThemeProvider theme={themes.light}>
       <DataViewerChart 
         {...props} 
         range={range} 
@@ -48,7 +46,6 @@ const NoldusChart = (props) => {
         onDrag={handleDrag}
         onStopSelect={handleStopSelect}
       />
-    </ThemeProvider>
   ) 
 };
 
