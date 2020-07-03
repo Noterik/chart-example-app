@@ -1,32 +1,35 @@
-import React from 'react';
-import { ThemeProvider } from "styled-components";
-import { DataViewerChart, themes } from "@insync-stageplayer/ui-components";
+import React, { useState, useCallback, handleDrag } from 'react';
+import NoldusChart from "./NoldusChart";
 import * as exampleData from "./exampleData";
 
 import './App.css';
 
 function App() {
-  console.log("themes = ", themes);
+  const [time, setTime] = useState(0);
+  const [visible, setVisible] = useState(5);
+
+  const handleDrag = (e) => {
+    setTime(e.time);
+  };
+
+  const handleStopSelect = (e) => {
+    setTime(e.time);
+    setVisible(e.visible);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <ThemeProvider theme={themes.dark}>
           <div className="chart-container">
-            <DataViewerChart
-              className="chart"
+            <NoldusChart
               lines={exampleData.lines}
               linesData={exampleData.linesData}
-              viewport={{
-                from: 0,
-                length: 40
-              }}
-              range={{
-                from: 0,
-                length: 150
-              }}
+              time={time}
+              visible={visible}
+              onDrag={handleDrag}
+              onStopSelect={handleStopSelect}
             />
           </div>
-        </ThemeProvider>
       </header>
     </div>
   );
