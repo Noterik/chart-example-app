@@ -1,16 +1,10 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
 import NoldusChart from "./NoldusChart";
 import { ThemeProvider } from "styled-components";
 import { Steps, themes } from "@insync-stageplayer/ui-components"; 
 import * as exampleData from "./exampleData";
 
 import './App.css';
-
-const actionTypes = {
-  SET_VISIBLE: "SET_VISIBLE",
-
-}
-
 
 function App() {
   const [state, setState] = useState({
@@ -43,7 +37,7 @@ function App() {
             {
               state.zoomSteps.map((step, index) => (
                 <span onClick={() => setState({ ...state, activeStep: index })}>
-                  {step}
+                  {step.toFixed(2)}
                 </span>
               ))
             }
