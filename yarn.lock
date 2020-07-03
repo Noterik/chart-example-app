@@ -1176,10 +1176,10 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@insync-stageplayer/chart@^0.2.0-alpha.20":
-  version "0.2.0-alpha.20"
-  resolved "https://registry.yarnpkg.com/@insync-stageplayer/chart/-/chart-0.2.0-alpha.20.tgz#559410a1e392438559954c7b429eaca94635f136"
-  integrity sha512-iBen1TY8L6PSFSxkq7x8Uh2tOv+DN402Qmluc2CNA7E1gbU6yygindhpEpwsOJhv3ZxDcxpYrQuzbdh0TnRzrQ==
+"@insync-stageplayer/chart@^0.2.0-alpha.23":
+  version "0.2.0-alpha.23"
+  resolved "https://registry.yarnpkg.com/@insync-stageplayer/chart/-/chart-0.2.0-alpha.23.tgz#269b77251a9bbd28d101a9d40e2fc300bc6fa503"
+  integrity sha512-0JF5dLo6C5QkW0OYiIYstorTaWCxa2RoaTSMyBPAsEA1riEVwBBdFcB9Adv8oLOUp6HkPusiLhbgMOA0VCmlcQ==
   dependencies:
     "@insync-stageplayer/common" "^0.2.0-alpha.19"
     "@insync-stageplayer/hooks" "^0.2.0-alpha.20"
@@ -1217,12 +1217,12 @@
     resize-observer-polyfill "^1.5.1"
     rxjs "^6.5.5"
 
-"@insync-stageplayer/ui-components@^0.2.0-alpha.20":
-  version "0.2.0-alpha.20"
-  resolved "https://registry.yarnpkg.com/@insync-stageplayer/ui-components/-/ui-components-0.2.0-alpha.20.tgz#089658fe472552048266959a0d0ad75d79ad5be5"
-  integrity sha512-6MJeJFcXkS+LCn5NT+aFOetQm5CkB8nvLikrKFxQAsBXiqJU0W7bD07x2mU0N2jpDgBXKHXxoMP3uw5G5i/Fsg==
+"@insync-stageplayer/ui-components@^0.2.0-alpha.23":
+  version "0.2.0-alpha.23"
+  resolved "https://registry.yarnpkg.com/@insync-stageplayer/ui-components/-/ui-components-0.2.0-alpha.23.tgz#0479fbd3c345d10c419b1ea579baae211f4a0f2b"
+  integrity sha512-R4WzemWqhsRTuzH55e4XxLCP9McJ7yp9V9YMaPx5Es69KtYdOVbggc0cal+xrRlfPNUqd0i/rq83iD5eHvRDVA==
   dependencies:
-    "@insync-stageplayer/chart" "^0.2.0-alpha.20"
+    "@insync-stageplayer/chart" "^0.2.0-alpha.23"
     "@insync-stageplayer/common" "^0.2.0-alpha.19"
     "@insync-stageplayer/entities" "^0.2.0-alpha.18"
     "@insync-stageplayer/hooks" "^0.2.0-alpha.20"
@@ -1233,7 +1233,7 @@
     "@types/react-dom" "^16.9.4"
     "@types/react-loadable" "^5.5.3"
     "@types/react-redux" "^7.1.6"
-    "@types/styled-components" "^4.4.2"
+    "@types/styled-components" "^5.1.0"
     bootstrap "^4.4.1"
     classnames "^2.2.6"
     immer "^5.3.2"
@@ -1809,10 +1809,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
   integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
 
-"@types/styled-components@^4.4.2":
-  version "4.4.3"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.4.3.tgz#74dd00ad760845a98890a8539361d8afc32059de"
-  integrity sha512-U0udeNOZBfUkJycmGJwmzun0FBt11rZy08weVQmE2xfUNAbX8AGOEWxWna2d+qAUKxKgMlcG+TZT0+K2FfDcnQ==
+"@types/styled-components@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.0.tgz#24d3412ba5395aa06e14fbc93c52f9454cebd0d6"
+  integrity sha512-ZFlLCuwF5r+4Vb7JUmd+Yr2S0UBdBGmI7ctFTgJMypIp3xOHI4LCFVn2dKMvpk6xDB2hLRykrEWMBwJEpUAUIQ==
   dependencies:
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"

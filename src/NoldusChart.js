@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { DataViewerChart } from "@insync-stageplayer/ui-components";
 
+
 const NoldusChart = (props) => {
   const { time, visible, onDrag, onStopSelect } = props;
 
@@ -38,6 +39,10 @@ const NoldusChart = (props) => {
     })
   }
 
+  const tickFormatter = (v) => {
+    return `${v / 1000} s`;
+  };
+
   return (
       <DataViewerChart 
         {...props} 
@@ -45,6 +50,9 @@ const NoldusChart = (props) => {
         viewport={viewport} 
         onDrag={handleDrag}
         onStopSelect={handleStopSelect}
+        xScale={{
+          tickFormatter,
+        }}
       />
   ) 
 };

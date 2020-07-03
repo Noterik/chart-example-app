@@ -74,6 +74,7 @@ export const lines = [
     fill: "end",
     color: "purple",
   },
+  /*
   {
     name: "HEAVE",
     unit: "deg",
@@ -82,6 +83,7 @@ export const lines = [
     color: "blue",
     showLine: false,
   },
+  */
 ];
 
 export const linesData = [
@@ -95,6 +97,7 @@ export const linesData = [
     { x: 10, y: 25 },
     { x: 120, y: 59 },
   ],
+  /*
   [
     {
       x: 0,
@@ -109,4 +112,5 @@ export const linesData = [
       y: 90,
     },
   ],
+  */
 ];
