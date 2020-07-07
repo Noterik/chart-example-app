@@ -57,7 +57,7 @@ export const events = [
   },
 ];
 
-export const lines = [
+export const metadata = [
   {
     name: "WAVE1",
     unit: "m",
@@ -86,7 +86,7 @@ export const lines = [
   */
 ];
 
-export const linesData = [
+export const data = [
   [
     { x: 0, y: 0 },
     { x: 10, y: 10 },
