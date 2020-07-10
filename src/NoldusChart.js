@@ -21,6 +21,13 @@ const CustomChartSlider = styled(ChartSlider)`
 `;
 
 /**
+ * # CUSTOM RENDERERS
+ * 
+ * These are custom renderers, used to customize aspects of the chart. It's better to keep
+ * these out-of-component to prevent unnesecary rerenders.l 
+ */
+
+/**
  * Custom renderer for the indicator, this is an overlay of the chart, indicating the current time.
  * The indicator is rendered in the middle of the chart. 
  * Is given an height (which is the height of the yScale of the chart).
@@ -56,6 +63,10 @@ const renderTooltipContent = (props) => {
     </div>
   );
 };
+
+/**
+ * END CUSTOM RENDERERS
+ */
 
 const NoldusChart = (props) => {
   const { time, visible, onDrag, onStopSelect } = props;
