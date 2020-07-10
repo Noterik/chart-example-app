@@ -34,6 +34,29 @@ const renderIndicator = (props) => <CustomChartIndicator {...props} />;
  */
 const renderSlider = (props) => <CustomChartSlider {...props} />;
 
+/**
+ * Custom tooltip content renderer. The tooltip itself (the box with the arrow) can also be changed through renderTooltip,
+ * although this is a little more complex.
+ * @param {*} props 
+ */
+const renderTooltipContent = (props) => {
+  console.log("props = ", props);
+
+  // The line metadata = 
+  const lineMetadata = props.lines[props.point.lineIndex];
+
+  // The current point value =
+  const pointValue = props.datasets[props.point.lineIndex].data[props.point.index];
+  console.log("pointValue = ", pointValue);
+
+  return (
+    <div>
+      <div>LINE = { JSON.stringify(lineMetadata) }</div>
+      <div>VALUE = { JSON.stringify(pointValue) }</div>
+    </div>
+  );
+};
+
 const NoldusChart = (props) => {
   const { time, visible, onDrag, onStopSelect } = props;
   const popoutTarget = useRef(document.body);
@@ -86,23 +109,7 @@ const NoldusChart = (props) => {
         defaultFontFamily="'Lato', serif"
         renderIndicator={renderIndicator}
         renderSlider={renderSlider}
-        renderTooltipContent={(props) => {
-          console.log("props = ", props);
-
-          // The line metadata = 
-          const lineMetadata = props.lines[props.point.lineIndex];
-
-          // The current point value =
-          const pointValue = props.datasets[props.point.lineIndex].data[props.point.index];
-          console.log("pointValue = ", pointValue);
-
-          return (
-            <div>
-              <div>LINE = { JSON.stringify(lineMetadata) }</div>
-              <div>VALUE = { JSON.stringify(pointValue) }</div>
-            </div>
-          );
-        }}
+        renderTooltipContent={renderTooltipContent}
         xScale={{
           showGridLines: true,
           fontSize: 15,
