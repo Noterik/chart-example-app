@@ -1,22 +1,35 @@
 import React, { useMemo, useCallback, useRef } from "react";
 import { DataViewerChart } from "@insync-stageplayer/ui-components";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { PopoutTargetContext } from "@insync-stageplayer/ui-components";
 import ChartSlider from "@insync-stageplayer/ui-components/lib/Chart/ChartSlider";
 import ChartIndicator from "@insync-stageplayer/ui-components/lib/DataViewerChart/ChartIndicator";
 
-/// <reference path=../node_modules/@insync-stageplayer/ui-components/lib/Chart/ChartSlider/ChartSlider.d.ts" />
+import "typeface-lato";
 
 const CustomChartIndicator = styled(ChartIndicator)`
-  background-color: blue;
+  background-color: purple;
+`;
+
+const pulse = () => keyframes`
+    0% {
+      background-color: rgba(0, 0, 255, 0.5);
+    }
+    50% {
+      background-color: rgba(0, 0, 255, 0.8);
+
+    }
+    100% {
+      background-color: rgba(0, 0, 255, 0.5);
+    }
 `;
 
 const CustomChartSlider = styled(ChartSlider)`
   border-color: blue;
   background-color: rgba(0, 0, 0, 0.1);
   :hover {
-    animation: none;
     cursor: grab;
+    animation: ${pulse} 1s infinite;
   }
 `;
 
@@ -69,7 +82,7 @@ const renderTooltipContent = (props) => {
  */
 
 const NoldusChart = (props) => {
-  const { time, visible, onDrag, onStopSelect } = props;
+  const { time, visible, onDrag, onStopSelect, lines: linesProp } = props;
   const popoutTarget = useRef(document.body);
 
   const rangeFrom = useMemo(() => {
@@ -103,7 +116,21 @@ const NoldusChart = (props) => {
       time: e.selection.from + e.selection.length / 2,
       visible: e.selection.length
     })
-  }, [onStopSelect])
+  }, [onStopSelect]);
+
+  /**
+   * TODO:
+   * This is not production ready code, see what fits your usecase.
+   */
+  const lines = useMemo(() => {
+    if(visible < 2000) {
+      return linesProp.map(l => ({
+        ...l,
+        pointRadius: 2
+      }))
+    }
+    return linesProp;
+  }, [linesProp, visible])
 
   const tickFormatter = (v) => {
     return `${v / 1000} s`;
@@ -114,16 +141,23 @@ const NoldusChart = (props) => {
       <DataViewerChart 
         {...props} 
         range={range} 
+        lines={lines}
         viewport={viewport} 
         onDrag={handleDrag}
         onStopSelect={handleStopSelect}
         defaultFontFamily="'Lato', serif"
         renderIndicator={renderIndicator}
         renderSlider={renderSlider}
-        renderTooltipContent={renderTooltipContent}
+        formatTooltipX={({ val }) => {
+          return tickFormatter(val);
+        }}
+        formatTooltipY={({ val }) => {
+          return val.toFixed(5);
+        }}
+        //renderTooltipContent={renderTooltipContent}
         xScale={{
           showGridLines: true,
-          fontSize: 15,
+          fontSize: 20,
           show: true,
           tickFormatter
         }}

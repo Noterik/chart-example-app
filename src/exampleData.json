@@ -7,8 +7,7 @@
       "unit": "",
       "min": 0,
       "max": 0.9737856,
-      "color": "#00CC66",
-      "pointRadius": 1
+      "color": "#00CC66"
     },
     { "name": "Sad", "unit": "", "min": 0, "max": 0.998735, "color": "#ec932f" }
   ],
