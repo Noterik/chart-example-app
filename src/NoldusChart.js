@@ -1,9 +1,42 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback, useRef } from "react";
 import { DataViewerChart } from "@insync-stageplayer/ui-components";
+import styled from "styled-components";
+import { PopoutTargetContext } from "@insync-stageplayer/ui-components";
+import ChartSlider from "@insync-stageplayer/ui-components/lib/Chart/ChartSlider";
+import ChartIndicator from "@insync-stageplayer/ui-components/lib/DataViewerChart/ChartIndicator";
 
+/// <reference path=../node_modules/@insync-stageplayer/ui-components/lib/Chart/ChartSlider/ChartSlider.d.ts" />
+
+const CustomChartIndicator = styled(ChartIndicator)`
+  background-color: blue;
+`;
+
+const CustomChartSlider = styled(ChartSlider)`
+  border-color: blue;
+  background-color: rgba(0, 0, 0, 0.1);
+  :hover {
+    animation: none;
+    cursor: grab;
+  }
+`;
+
+/**
+ * Custom renderer for the indicator, this is an overlay of the chart, indicating the current time.
+ * The indicator is rendered in the middle of the chart. 
+ * Is given an height (which is the height of the yScale of the chart).
+ * @param {{ height: number }} props 
+ */
+const renderIndicator = (props) => <CustomChartIndicator {...props} />;
+
+/**
+ * Custom renderer for the slider. The slider is an overlay of the chart, overlaying the xScale,
+ * can be used to drag the chart. 
+ */
+const renderSlider = (props) => <CustomChartSlider {...props} />;
 
 const NoldusChart = (props) => {
   const { time, visible, onDrag, onStopSelect } = props;
+  const popoutTarget = useRef(document.body);
 
   const rangeFrom = useMemo(() => {
     return (Math.floor(time / visible) - 1) * visible;
@@ -23,37 +56,65 @@ const NoldusChart = (props) => {
     };
   }, [time, visible]);
 
-  const handleDrag = (e) => {
+  const handleDrag = useCallback((e) => {
     onDrag({
       ...e,
       time: e.origin.from + (e.origin.length / 2) + e.delta,
     })
-  };
+  }, [onDrag]);
 
-  const handleStopSelect = (e) => {
-    console.log(e);
+  const handleStopSelect = useCallback((e) => {
     onStopSelect({
       ...e,
       time: e.selection.from + e.selection.length / 2,
       visible: e.selection.length
     })
-  }
+  }, [onStopSelect])
 
   const tickFormatter = (v) => {
     return `${v / 1000} s`;
   };
 
   return (
+    <PopoutTargetContext.Provider value={popoutTarget}>
       <DataViewerChart 
         {...props} 
         range={range} 
         viewport={viewport} 
         onDrag={handleDrag}
         onStopSelect={handleStopSelect}
+        defaultFontFamily="'Lato', serif"
+        renderIndicator={renderIndicator}
+        renderSlider={renderSlider}
+        renderTooltipContent={(props) => {
+          console.log("props = ", props);
+
+          // The line metadata = 
+          const lineMetadata = props.lines[props.point.lineIndex];
+
+          // The current point value =
+          const pointValue = props.datasets[props.point.lineIndex].data[props.point.index];
+          console.log("pointValue = ", pointValue);
+
+          return (
+            <div>
+              <div>LINE = { JSON.stringify(lineMetadata) }</div>
+              <div>VALUE = { JSON.stringify(pointValue) }</div>
+            </div>
+          );
+        }}
         xScale={{
-          tickFormatter,
+          showGridLines: true,
+          fontSize: 15,
+          show: true,
+          tickFormatter
+        }}
+        yScale={{
+          fontSize: 15,
+          showGridLines: true
         }}
       />
+    </PopoutTargetContext.Provider>
   ) 
 };
 
