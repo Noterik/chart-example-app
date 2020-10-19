@@ -77,6 +77,33 @@ const renderTooltipContent = (props) => {
   );
 };
 
+const tickFormatter = (v) => {
+  return `${v / 1000} s`;
+};
+
+const xScaleProps = {
+  showGridLines: true,
+  fontSize: 20,
+  show: true,
+  tickFormatter,
+  gridLinesDash: [5, 15],
+};
+
+const yScaleProps = {
+  fontSize: 15,
+  showGridLines: true,
+  gridLinesDash: [5, 15],
+  stepSize: 0.2
+};
+
+const formatTooltipX = ({ val }) => {
+  return tickFormatter(val);
+};
+
+const formatTooltipY = ({ val }) => ({ val }) => {
+  return val.toFixed(5);
+};
+
 /**
  * END CUSTOM RENDERERS
  */
@@ -132,10 +159,6 @@ const NoldusChart = (props) => {
     return linesProp;
   }, [linesProp, visible])
 
-  const tickFormatter = (v) => {
-    return `${v / 1000} s`;
-  };
-
   return (
     <PopoutTargetContext.Provider value={popoutTarget}>
       <DataViewerChart 
@@ -148,26 +171,11 @@ const NoldusChart = (props) => {
         defaultFontFamily="'Lato', serif"
         renderIndicator={renderIndicator}
         renderSlider={renderSlider}
-        formatTooltipX={({ val }) => {
-          return tickFormatter(val);
-        }}
-        formatTooltipY={({ val }) => {
-          return val.toFixed(5);
-        }}
-        //renderTooltipContent={renderTooltipContent}
-        xScale={{
-          showGridLines: true,
-          fontSize: 20,
-          show: true,
-          tickFormatter,
-          gridLinesDash: [5, 15],
-        }}
-        yScale={{
-          fontSize: 15,
-          showGridLines: true,
-          gridLinesDash: [5, 15],
-          stepSize: 0.2
-        }}
+        formatTooltipX={formatTooltipX}
+        formatTooltipY={formatTooltipY}
+        renderTooltipContent={renderTooltipContent}
+        xScale={xScaleProps}
+        yScale={yScaleProps}
       />
     </PopoutTargetContext.Provider>
   ) 
