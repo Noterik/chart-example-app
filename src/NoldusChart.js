@@ -159,11 +159,14 @@ const NoldusChart = (props) => {
           showGridLines: true,
           fontSize: 20,
           show: true,
-          tickFormatter
+          tickFormatter,
+          gridLinesDash: [5, 15],
         }}
         yScale={{
           fontSize: 15,
-          showGridLines: true
+          showGridLines: true,
+          gridLinesDash: [5, 15],
+          stepSize: 0.2
         }}
       />
     </PopoutTargetContext.Provider>
